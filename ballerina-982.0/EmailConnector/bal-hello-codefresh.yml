@@ -2,16 +2,16 @@ version: '1.0'
 steps:
   Ballerina_Package:
     title: Build Ballerina Service
-    image: iguna/bal-play
+    image: igunawardana/ballerina-play
     fail_fast: true
     commands:
-    - ballerina build btest || cat ballerina-internal.log
+    - ballerina build mitra.webinar.notification || cat ballerina-internal.log
   unit_test:
     title: Testerina Tests.
-    image: iguna/bal-play
+    image: igunawardana/ballerina-play
     commands:
     - ballerina init
-    - ballerina test btest
+    - ballerina test mitra.webinar.notification
   build_Image:
     title: Build image
     type: build
