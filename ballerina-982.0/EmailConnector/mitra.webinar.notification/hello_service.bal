@@ -10,7 +10,7 @@ endpoint http:Listener listener {
 };
 
 @docker:Config {
-    name: "bp-dock"
+    name: "igunawardana/ballerina-play"
 }
 
 service<http:Service> hello bind listener {
