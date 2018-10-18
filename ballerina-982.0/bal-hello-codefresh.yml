@@ -1,0 +1,29 @@
+version: '1.0'
+steps:
+  Ballerina_Package:
+    title: Build Ballerina Service
+    image: iguna/bal-play
+    fail_fast: true
+    commands:
+    - ballerina build btest || cat ballerina-internal.log
+  unit_test:
+    title: Testerina Tests.
+    image: iguna/bal-play
+    commands:
+    - ballerina init
+    - ballerina test btest
+  build_Image:
+    title: Build image
+    type: build
+    image_name: igunawardana/ballerina-play
+    working_directory: ./target/btest/
+    tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
+    dockerfile: Dockerfile
+    no_cache: true
+    no_cf_cache: true
+  push_Image:
+    image_name: igunawardana/ballerina-play
+    type: push
+    candidate: ${{build_Image}}
+    tag: latest
+  
