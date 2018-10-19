@@ -2,28 +2,8 @@ version: '1.0'
 steps:
   Ballerina_Package:
     title: Build Ballerina Service
-    image: rpbo/ballerina
+    image: igunawardana/ballerina-play
     fail_fast: true
     commands:
-    - ballerina build mitra.webinar.notification || cat ballerina-internal.log
-  unit_test:
-    title: Testerina Tests.
-    image: rpbo/ballerina
-    commands:
-    - ballerina init
-    - ballerina test mitra.webinar.notification
-  build_Image:
-    title: Build image
-    type: build
-    image_name: igunawardana/ballerina-play
-    working_directory: ./target/btest/
-    tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
-    dockerfile: Dockerfile
-    no_cache: true
-    no_cf_cache: true
-  push_Image:
-    image_name: igunawardana/ballerina-play
-    type: push
-    candidate: ${{build_Image}}
-    tag: latest
+    - ballerina run mitra.webinar.notification.balx || cat ballerina-internal.log
   
