@@ -2,13 +2,13 @@ version: '1.0'
 steps:
   Ballerina_Package:
     title: Build Ballerina Service
-    image: ballerina/ballerina
+    image: rpbo/ballerina
     fail_fast: true
     commands:
     - ballerina build mitra.webinar.notification || cat ballerina-internal.log
   unit_test:
     title: Testerina Tests.
-    image: ballerina/ballerina
+    image: rpbo/ballerina
     commands:
     - ballerina init
     - ballerina test mitra.webinar.notification
