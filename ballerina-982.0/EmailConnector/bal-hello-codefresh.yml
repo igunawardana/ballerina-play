@@ -5,5 +5,25 @@ steps:
     image: igunawardana/ballerina-play
     fail_fast: true
     commands:
-    - ballerina run mitra.webinar.notification.balx || cat ballerina-internal.log
+    - ballerina build mitra.webinar.notification || cat ballerina-internal.log
+  unit_test:
+    title: Testerina Tests.
+    image: igunawardana/ballerina-play
+    commands:
+    - ballerina init
+    - ballerina test mitra.webinar.notification
+  build_Image:
+    title: Build image
+    type: build
+    image_name: igunawardana/ballerina-play
+    working_directory: ./target/btest/
+    tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
+    dockerfile: Dockerfile
+    no_cache: true
+    no_cf_cache: true
+  push_Image:
+    image_name: igunawardana/ballerina-play
+    type: push
+    candidate: ${{build_Image}}
+    tag: latest
   
