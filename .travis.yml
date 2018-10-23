@@ -24,7 +24,7 @@ script:
 
 - ballerina init
 
-- ballerina test
+- ballerina build
 
 deploy:
   provider: s3
