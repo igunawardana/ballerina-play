@@ -28,7 +28,7 @@ script:
 
 deploy:
   provider: s3
-  access_key_id: "AKIAI5BD2T7FH6XUZQGQ"
-  secret_access_key: "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"
+  access_key_id: "{}"
+  secret_access_key: "{}"
   bucket: "ballerina-travis"
   skip_cleanup: true
